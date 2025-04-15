@@ -309,7 +309,7 @@
 
     <!-- Hero Section -->
     <div class="hero-section">
-        <img src="/Images/vo.jpg" alt="Hero Background" class="hero-image">
+        <img src="Images/vo.jpg" alt="Hero Background" class="hero-image">
         <div class="container">
             <div class="hero-content">
                 <h1>Handmade with Love💕</h1>
@@ -522,9 +522,9 @@
                                 <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist('${product.id}')">
                                     <i class="fas fa-heart"></i>
                                 </button>
-                                <img src="images/${product.image}" class="img-fluid" alt="${product.name}">
+                                <img src="Images/${product.image}" class="img-fluid" alt="${product.name}">
                                 <h4>${product.name}</h4>
-                                <p class="text-muted">${product.description}</p>
+                                <p class="text-light">${product.description}</p>
                                 <p class="price">${product.price}</p>
                                 <button class="btn btn-primary w-100" onclick="addToCart('${product.id}')">
                                     Add to Cart ♡
@@ -578,10 +578,10 @@
     const wishlistItems = document.getElementById('wishlist-items');
     wishlistItems.innerHTML = wishlist.map(item => `
         <div class="wishlist-item">
-            <img src="images/${item.image}" alt="${item.name}">
+            <img src="Images/${item.image}" alt="${item.name}">
             <div class="wishlist-item-details">
                 <h6>${item.name}</h6>
-                <small class="text-muted">${item.description}</small>
+                <small class="text-light">${item.description}</small>
             </div>
             <div class="wishlist-item-actions">
                 <span class="price">${item.price}</span>
@@ -617,7 +617,7 @@
             <div class="cart-item">
                 <div>
                     <h6>${item.name}</h6>
-                    <small class="text-muted">${item.description}</small>
+                    <small class="text-light">${item.description}</small>
                 </div>
                 <div class="price">${item.price}</div>
             </div>
@@ -633,7 +633,7 @@
                 <div class="cart-item">
                     <div>
                         <h6>${item.name}</h6>
-                        <small class="text-muted">${item.description}</small>
+                        <small class="text-light">${item.description}</small>
                     </div>
                     <div>
                         <span class="price">${item.price}</span>
