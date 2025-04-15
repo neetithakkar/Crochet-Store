@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrant Crochet Corner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #FFE5F1;
+            --secondary-color: #FF69B4;
+            --accent-color: #FF1493;
+            --text-color: #4B0082;
+            --purses-bg: #FFB6C1;
+            --bouquets-bg: #9ceaa5;
+            --toys-bg: #fdff95;
+            --covers-bg: #87CEEB;
+            --blankets-bg: #DDA0DD;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
+        }
+        .navbar {
+        background: rgba(255,255,255, 0.9);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: rgb(0, 0, 0) !important;
+            font-weight: bold;
+        }
+
+        .navbar-brand, .nav-link {
+            color: rgb(44, 8, 17) !important;
+            font-weight: bold;
+        }
+        .navbar-toggler-icon {
+            background-color: rgb(0, 0, 0);
+        }
+        .hero-section {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 50px;
+        padding: 0;
+    }
+
+    .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    .hero-content {
+        text-align: center;
+        padding: 35px;
+        z-index: 1;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        max-width: 900px;
+        margin: 0 auto;
+    }
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-color);
+            font-size: 4.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .hero-section .lead {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .category-section {
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .category-title {
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .product-card img {
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .wishlist-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1;
+            transition: transform 0.3s;
+        }
+
+        .wishlist-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .wishlist-btn.active i {
+            color: #FF0000;
+        }
+        .wishlist-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid #eee;
+        gap: 20px;
+    }
+
+    .wishlist-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .wishlist-item-details {
+        flex-grow: 1;
+    }
+
+    .wishlist-item-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+    } 
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 15px 0;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,20,147,0.3);
+            background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
+        }
+
+        .cart-item {
+            padding: 20px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .toast {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .toast-header {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border-radius: 15px 15px 0 0;
+        }
+
+        footer {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            padding: 60px 0;
+            margin-top: 80px;
+        }
+
+        .text-accent {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            margin-right: 20px;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        #purses { background-color: var(--purses-bg); }
+        #bouquets { background-color: var(--bouquets-bg); }
+        #toys { background-color: var(--toys-bg); }
+        #covers { background-color: var(--covers-bg); }
+        #blankets { background-color: var(--blankets-bg); }
+
+        .badge {
+            background-color: var(--accent-color) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toast Notification -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="notification-message"></div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"> The Crochet Corner </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#purses">Purses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bouquets">Bouquets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#toys">Toys</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#covers">Laptop Covers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#blankets">Blankets</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#wishlistModal">
+                            Wishlist <span class="badge rounded-pill" id="wishlist-count">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            Cart <span class="badge rounded-pill" id="cart-count">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Login/Signup
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <img src="/Images/vo.jpg" alt="Hero Background" class="hero-image">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Handmade with Love💕</h1>
+                <p class="lead mt-3">Discover our vibrant collection of handcrafted crochet items</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Categories -->
+    <div class="container">
+        <div id="purses" class="category-section">
+            <h2 class="category-title">Crochet Purses</h2>
+            <div class="row" id="purses-list"></div>
+        </div>
+
+        <div id="bouquets" class="category-section">
+            <h2 class="category-title">Flower Bouquets</h2>
+            <div class="row" id="bouquets-list"></div>
+        </div>
+
+        <div id="toys" class="category-section">
+            <h2 class="category-title">Crochet Toys</h2>
+            <div class="row" id="toys-list"></div>
+        </div>
+
+        <div id="covers" class="category-section">
+            <h2 class="category-title">Laptop Covers</h2>
+            <div class="row" id="covers-list"></div>
+        </div>
+
+        <div id="blankets" class="category-section">
+            <h2 class="category-title">Cozy Blankets</h2>
+            <div class="row" id="blankets-list"></div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div class="modal fade" id="wishlistModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">✨ My Wishlist ✨</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="wishlist-items"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Shopping Cart</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="cart-items"></div>
+                <div class="modal-footer">
+                    <div class="cart-total">Total: Rs.<span id="cart-total">0</span></div>
+                    <button class="btn btn-primary" onclick="checkout()">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Welcome to Crochet Corner</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-tabs mb-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="signup-tab" data-bs-toggle="tab" href="#signup">Sign Up</a>
+                    </li>
+                </ul>
+                
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="login">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-pane fade" id="signup">
+                        <form id="signupForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signup-email" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="signup-email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signup-password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="signup-password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-accent">✨ About Us</h5>
+                    <p>Vibrant Crochet Corner brings you handcrafted items made with love and care. Each piece is uniquely created to bring color and joy to your life.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-accent">✨ Contact Info</h5>
+                    <p>Email: hello@vibrantcrochet.com</p>
+                    <p>Phone:91 8956217777</p>
+                    <p>Address: Mumbai </p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5 class="text-accent">✨ Follow Us</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-etsy"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="mb-0">✨ © 2024 Vibrant Crochet Corner. All rights reserved. ✨</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const products = {
+            purses: [
+                { id: 'p1', name: "Berry Bag", price: "Rs. 699", image: "1.jpg", description: "BOHO Tote bag" },
+                { id: 'p2', name: "PINK BOW", price:"Rs.899", image: "2.jpg", description: "A cutesy purse🎀" },
+                { id: 'p5', name: "SHOULDER BAG", price:"Rs.649", image: "5.jpg", description: "Available in 3 colours" },
+                { id: 'p3', name: "SUNFLOWER BAG", price:"Rs.599", image: "3.jpg", description: "Summer Vibes!" },
+                { id: 'p4', name: "WHITE FLOWER BAG", price:"Rs.599", image: "4.jpg", description: "Round mini bag" },
+               
+            ],
+            bouquets: [
+                { id: 'b1', name: "BLUE FLOWERS", price:"Rs. 799", image: "6.jpg", description: "Rare and unique beauty" },
+                { id: 'b2', name: "LILAC FLOWERS", price:"Rs.799", image: "7.jpg", description: "Spring Season vibes!" },
+                { id: 'b3', name: "PINK FLOWERS", price:"Rs. 799", image: "8.jpg", description: "Symbol of Grace & Happiness " },
+                { id: 'b4', name: "SUNFLOWERS", price:"Rs. 699", image: "9.jpg", description: "Cheerful vibe" },
+                { id: 'b5', name: "ROSES", price:"Rs. 799", image: "10.jpg", description: "Symbol of Love❤️" }
+            ],
+            toys: [
+                { id: 't1', name: "CHUBBS", price:"Rs. 399", image: "11.jpg", description: "A chill guy" },
+                { id: 't2', name: "SPIDEY BRO", price:"Rs. 399", image: "12.jpg", description: "Always flexing his web" },
+                { id: 't3', name: "MR. BUNN", price: "Rs. 399", image: "13.jpg", description: "The Innocent One" },
+                { id: 't4', name: "MS. LALA", price:"Rs. 749", image: "14.jpg", description: "The Fashionista (extra clothes and accessories included)" },
+                { id: 't5', name: "MR. DUCKY DUCK", price: "Rs.399", image: "15.jpg", description: "The Cool guy" }
+            ],
+            covers: [
+                { id: 'c1', name: "CARTOON COZY", price:"Rs.999", image: "16.jpg", description: "Snoopy love" },
+                { id: 'c2', name: "VINTAGE CHIC", price:"Rs.799", image: "17.jpg", description: "Elegant & Retro charm" },
+                { id: 'c3', name: "FLORAL BLOOM", price:"Rs.1299", image: "18.jpg", description: "Hand-stitched Flowers" },
+                { id: 'c4', name: "FALL VIBES", price:"Rs.1199", image: "19.jpg", description: "Cozy Autumn colour" },
+                { id: 'c5', name: "COTTAGECORE GREEN", price:"Rs.799", image: "20.jpg", description: "Patchwork of Earthy calm" }
+            ],
+            blankets: [
+                { id: 'bl1', name: "SUNBURST SNUGGLE", price:"Rs.2499", image: "21.jpg", description: "Cozy Blankyy" },
+                { id: 'bl2', name: "PETAL POP", price:"Rs.2999", image: "22.jpg", description: "Blooming warmth in every square" },
+                { id: 'bl3', name: "FOREST SWIRL", price:"Rs.4499", image: "23.jpg", description: "Cozy galaxy for dreamers" },
+                { id: 'bl4', name: "DAISY DRIFT", price:"Rs.3499", image: "24.jpg", description: "Soft florals, endless comfort" },
+                { id: 'bl5', name: "RETRO PATCH", price:"Rs.3999", image: "25.jpg", description: "Vintage charm in bold blocks" }
+            ]
+        };
+
+        let cart = [];
+        let wishlist = [];
+
+        function showNotification(message) {
+            const notificationEl = document.getElementById('notification');
+            document.getElementById('notification-message').textContent = message;
+            const toast = new bootstrap.Toast(notificationEl);
+            toast.show();
+        }
+
+        function displayProducts() {
+            Object.keys(products).forEach(category => {
+                const categoryList = document.getElementById(`${category}-list`);
+                products[category].forEach(product => {
+                    const isWishlisted = wishlist.some(item => item.id === product.id);
+                    categoryList.innerHTML += `
+                        <div class="col-md-4">
+                            <div class="product-card">
+                                <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" onclick="toggleWishlist('${product.id}')">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <img src="images/${product.image}" class="img-fluid" alt="${product.name}">
+                                <h4>${product.name}</h4>
+                                <p class="text-muted">${product.description}</p>
+                                <p class="price">${product.price}</p>
+                                <button class="btn btn-primary w-100" onclick="addToCart('${product.id}')">
+                                    Add to Cart ♡
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        function addToCart(productId) {
+            let product;
+            Object.values(products).forEach(category => {
+                const found = category.find(p => p.id === productId);
+                if (found) product = found;
+            });
+            
+            if (product) {
+                cart.push(product);
+                updateCartCount();
+                updateCartDisplay();
+                showNotification(`✨ ${product.name} added to cart! ✨`);
+            }
+        }
+
+        function toggleWishlist(productId) {
+            const index = wishlist.findIndex(item => item.id === productId);
+            let product;
+            
+            Object.values(products).forEach(category => {
+                const found = category.find(p => p.id === productId);
+                if (found) product = found;
+            });
+
+            const heartBtn = document.querySelector(`button[onclick="toggleWishlist('${productId}')"]`);
+            
+            if (index === -1 && product) {
+                wishlist.push(product);
+                heartBtn.classList.add('active');
+                showNotification(`✨ ${product.name} added to wishlist! ✨`);
+            } else {
+                wishlist.splice(index, 1);
+                heartBtn.classList.remove('active');
+                showNotification(`✨ ${product.name} removed from wishlist! ✨`);
+            }
+            
+            updateWishlistCount();
+            updateWishlistDisplay();
+            function updateWishlistDisplay() {
+    const wishlistItems = document.getElementById('wishlist-items');
+    wishlistItems.innerHTML = wishlist.map(item => `
+        <div class="wishlist-item">
+            <img src="images/${item.image}" alt="${item.name}">
+            <div class="wishlist-item-details">
+                <h6>${item.name}</h6>
+                <small class="text-muted">${item.description}</small>
+            </div>
+            <div class="wishlist-item-actions">
+                <span class="price">${item.price}</span>
+                <button class="btn btn-sm btn-primary" onclick="addToCart('${item.id}')">
+                    Add to Cart ♡
+                </button>
+                <button class="btn btn-sm btn-outline-danger" onclick="toggleWishlist('${item.id}')">
+                    Remove ✕
+                </button>
+            </div>
+        </div>
+    `).join('');
+}    
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+
+        function updateWishlistCount() {
+            document.getElementById('wishlist-count').textContent = wishlist.length;
+        }
+
+        function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    let total = 0;
+    
+    cartItems.innerHTML = cart.map(item => {
+        // Extract number from price string (e.g., "Rs. 699" -> 699)
+        const priceValue = parseInt(item.price.replace(/[^0-9]/g, ''));
+        total += priceValue;
+        return `
+            <div class="cart-item">
+                <div>
+                    <h6>${item.name}</h6>
+                    <small class="text-muted">${item.description}</small>
+                </div>
+                <div class="price">${item.price}</div>
+            </div>
+        `;
+    }).join('');
+    
+    document.getElementById('cart-total').textContent = total;
+}
+
+        function updateWishlistDisplay() {
+            const wishlistItems = document.getElementById('wishlist-items');
+            wishlistItems.innerHTML = wishlist.map(item => `
+                <div class="cart-item">
+                    <div>
+                        <h6>${item.name}</h6>
+                        <small class="text-muted">${item.description}</small>
+                    </div>
+                    <div>
+                        <span class="price">${item.price}</span>
+                        <button class="btn btn-sm btn-primary ms-2" onclick="addToCart('${item.id}')">
+                            Add to Cart ✨
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            alert('✨ Thank you for shopping! Proceeding to checkout... ✨');
+        }
+
+        window.onload = function() {
+            displayProducts();
+        };
+        // Login and Signup handling
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    // Here you would typically make an API call to your backend
+    console.log('Login attempt:', email);
+    showNotification('✨ Login successful! ✨');
+    $('#loginModal').modal('hide');
+});
+
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    
+    // Here you would typically make an API call to your backend
+    console.log('Signup attempt:', email);
+    showNotification('✨ Account created successfully! ✨');
+    $('#loginModal').modal('hide');
+});
+    </script>
+</body>
+</html>
